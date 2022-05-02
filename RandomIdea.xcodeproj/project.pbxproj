@@ -14,6 +14,8 @@
 		4176CDC4281FD3CB00690F4C /* ListOfOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDC3281FD3CB00690F4C /* ListOfOptionsViewController.swift */; };
 		4176CDC9281FD86A00690F4C /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDC8281FD86A00690F4C /* UIView+Ext.swift */; };
 		4176CDCB281FDD0C00690F4C /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDCA281FDD0C00690F4C /* OptionCell.swift */; };
+		4176CDD3281FEEA500690F4C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDD2281FEEA500690F4C /* Model.swift */; };
+		4176CDD5281FF34800690F4C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDD4281FF34800690F4C /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		4176CDC3281FD3CB00690F4C /* ListOfOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfOptionsViewController.swift; sourceTree = "<group>"; };
 		4176CDC8281FD86A00690F4C /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		4176CDCA281FDD0C00690F4C /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		4176CDD2281FEEA500690F4C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		4176CDD4281FF34800690F4C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				4176CDCF281FEAD100690F4C /* Storyboards */,
 				4176CDCC281FE9F700690F4C /* ViewControllers */,
 				4176CDC7281FD81000690F4C /* Extensions-Utilities */,
+				4176CDD2281FEEA500690F4C /* Model.swift */,
+				4176CDD4281FF34800690F4C /* DataManager.swift */,
 			);
 			path = RandomIdea;
 			sourceTree = "<group>";
@@ -183,6 +189,8 @@
 				4176CDCB281FDD0C00690F4C /* OptionCell.swift in Sources */,
 				4176CDC9281FD86A00690F4C /* UIView+Ext.swift in Sources */,
 				4176CDC4281FD3CB00690F4C /* ListOfOptionsViewController.swift in Sources */,
+				4176CDD5281FF34800690F4C /* DataManager.swift in Sources */,
+				4176CDD3281FEEA500690F4C /* Model.swift in Sources */,
 				4162F847281D4BE900BA0974 /* AppDelegate.swift in Sources */,
 				4162F849281D4BE900BA0974 /* SceneDelegate.swift in Sources */,
 			);

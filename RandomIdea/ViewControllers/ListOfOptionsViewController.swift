@@ -9,7 +9,12 @@ import UIKit
 
 class ListOfOptionsViewController: UIViewController {
     
+    private let categoryList = Idea.getIdeas()
     var tableView = UITableView()
+    
+    struct Cell {
+        static let optionCell = "OptionCell"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +28,7 @@ class ListOfOptionsViewController: UIViewController {
         view.addSubview(tableView)
         setTableViewDelegates()
         tableView.rowHeight = 100
-        
+        tableView.register(OptionCell.self, forCellReuseIdentifier: Cell.optionCell)
         tableView.pin(to: view)
         
     }
@@ -56,11 +61,16 @@ class ListOfOptionsViewController: UIViewController {
 
 extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return categoryList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cell.optionCell) as! OptionCell
+        let idea = categoryList[indexPath.row]
+        cell.set(idea: idea)
+        
+        
+        return cell
     }
     
     
