@@ -16,6 +16,7 @@
 		4176CDCB281FDD0C00690F4C /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDCA281FDD0C00690F4C /* OptionCell.swift */; };
 		4176CDD3281FEEA500690F4C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDD2281FEEA500690F4C /* Model.swift */; };
 		4176CDD5281FF34800690F4C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDD4281FF34800690F4C /* DataManager.swift */; };
+		4176CDD728202A5000690F4C /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4176CDD628202A5000690F4C /* DescriptionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		4176CDCA281FDD0C00690F4C /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		4176CDD2281FEEA500690F4C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4176CDD4281FF34800690F4C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		4176CDD628202A5000690F4C /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			children = (
 				4176CDC3281FD3CB00690F4C /* ListOfOptionsViewController.swift */,
 				4176CDCA281FDD0C00690F4C /* OptionCell.swift */,
+				4176CDD628202A5000690F4C /* DescriptionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				4176CDC4281FD3CB00690F4C /* ListOfOptionsViewController.swift in Sources */,
 				4176CDD5281FF34800690F4C /* DataManager.swift in Sources */,
 				4176CDD3281FEEA500690F4C /* Model.swift in Sources */,
+				4176CDD728202A5000690F4C /* DescriptionViewController.swift in Sources */,
 				4162F847281D4BE900BA0974 /* AppDelegate.swift in Sources */,
 				4162F849281D4BE900BA0974 /* SceneDelegate.swift in Sources */,
 			);
