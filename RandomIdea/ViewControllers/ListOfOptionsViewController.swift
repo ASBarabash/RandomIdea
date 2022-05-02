@@ -20,9 +20,11 @@ class ListOfOptionsViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         configureTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
 
-        
     }
+    
     
     private func configureTableView() {
         view.addSubview(tableView)
@@ -47,19 +49,10 @@ class ListOfOptionsViewController: UIViewController {
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryList.count
     }
@@ -71,6 +64,18 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let destinationVC = DescriptionViewController()
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//            destinationVC.category = categoryList[indexPath.row].category.first
+//        }
+//        let description = categoryList[indexPath.row]
+//        performSegue(withIdentifier: "SecondViewController", sender: description)
+        navigationController?.pushViewController(DescriptionViewController(), animated: true)
+//        present(DescriptionViewController(), animated: true)
+        
     }
     
     
