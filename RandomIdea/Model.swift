@@ -34,11 +34,18 @@ extension Idea {
                     category: Category.getEntertainment()
                 )
                 idea.append(item)
-            default:
+            case 1:
                 let item = Idea(
                     icon: DataManager.shared.icon[index],
                     title: DataManager.shared.title[index],
                     category: Category.getRecipes()
+                )
+                idea.append(item)
+            default:
+                let item = Idea(
+                    icon: DataManager.shared.icon[index],
+                    title: DataManager.shared.title[index],
+                    category: Category.getSkills()
                 )
                 idea.append(item)
                 
@@ -67,6 +74,17 @@ extension Category {
         for index in 0...iterations {
             let cooking = Category(discription: DataManager.shared.cooking[index])
             category.append(cooking)
+        }
+        return category
+    }
+    
+    static func getSkills() -> [Category] {
+        var category: [Category] = []
+        let iterations = DataManager.shared.education.count - 1
+        
+        for index in 0...iterations {
+            let education = Category(discription: DataManager.shared.education[index])
+            category.append(education)
         }
         return category
     }

@@ -12,7 +12,11 @@ class DescriptionViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "label"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        let categoryShuffled = category.shuffled()
+        label.text = categoryShuffled.first
+        
         
         return label
     }()
@@ -25,11 +29,25 @@ class DescriptionViewController: UIViewController {
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
 //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
         return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
-            self.dismiss(animated: true)
+            let categoryShuffled = self.category.shuffled()
+            self.descriptionLabel.text = categoryShuffled.first
         })
     }()
+
+    //перебрасываем значение
+    var category : [String]
+
+    init(description: [String]) {
+        self.category = description
+        super.init(nibName: nil, bundle: nil)
+    }
     
-//    var category : [Category]!
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,16 +67,15 @@ class DescriptionViewController: UIViewController {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
             
         ])
-        
         randomButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            randomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            randomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             randomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             randomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
 

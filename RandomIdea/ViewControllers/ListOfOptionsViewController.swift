@@ -9,7 +9,8 @@ import UIKit
 
 class ListOfOptionsViewController: UIViewController {
     
-    private let categoryList = Idea.getIdeas()
+    private var categoryList: [Idea] = []
+    
     var tableView = UITableView()
     
     struct Cell {
@@ -18,10 +19,12 @@ class ListOfOptionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        categoryList = Idea.getIdeas()
+        
+        
         setupNavigationBar()
         configureTableView()
-        tableView.delegate = self
-        tableView.dataSource = self
 
     }
     
@@ -47,6 +50,13 @@ class ListOfOptionsViewController: UIViewController {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Редактировать мой список", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editMyList))
+        
+    }
+    
+    @objc private func editMyList() {
+        let myListVC = MyListViewController()
+        navigationController?.pushViewController(myListVC, animated: true)
     }
 
 }
@@ -67,13 +77,22 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let destinationVC = DescriptionViewController()
-//        if let indexPath = tableView.indexPathForSelectedRow {
-//            destinationVC.category = categoryList[indexPath.row].category.first
-//        }
-//        let description = categoryList[indexPath.row]
-//        performSegue(withIdentifier: "SecondViewController", sender: description)
-        navigationController?.pushViewController(DescriptionViewController(), animated: true)
+        let category = categoryList[indexPath.row]
+        
+        if category.title == "Мой список" {
+            let myList: [String] = UserDefaults.standard.array(forKey: "MyListKey") as? [String] ?? []
+            let descriptionVC = DescriptionViewController(description: myList)
+            navigationController?.pushViewController(descriptionVC, animated: true)
+        } else {
+            var myList: [String] = []
+            
+            category.category.forEach { item in
+                myList.append(item.discription)
+            }
+            
+            let descriptionVC = DescriptionViewController(description: myList)
+            navigationController?.pushViewController(descriptionVC, animated: true)
+        }
 //        present(DescriptionViewController(), animated: true)
         
     }
