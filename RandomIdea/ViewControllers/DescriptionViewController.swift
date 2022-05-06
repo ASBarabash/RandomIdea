@@ -35,7 +35,12 @@ class DescriptionViewController: UIViewController {
     }()
 
     //перебрасываем значение
-    var category : [String]
+    var category : [String] {
+        didSet {
+            descriptionLabel.text = category.first
+        }
+    }
+    var showNavBarItem = false
 
     init(description: [String]) {
         self.category = description
@@ -54,7 +59,32 @@ class DescriptionViewController: UIViewController {
         view.backgroundColor = .white
         setupSubviews(descriptionLabel, randomButton)
         setConstraints()
+        setupNavigationBar()
+        
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if showNavBarItem {
+            category = StorageManager.shared.fetchList()
+        }
+    }
+    
+    private func setupNavigationBar() {
+        if showNavBarItem {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "Редактировать мой список",
+                style: UIBarButtonItem.Style.plain,
+                target: self,
+                action: #selector(editMyList)
+            )
+        }
+    }
+    
+    @objc private func editMyList() {
+        let myListVC = MyListViewController()
+        navigationController?.pushViewController(myListVC, animated: true)
     }
     
     private func setupSubviews(_ subviews: UIView...) {
