@@ -45,7 +45,7 @@ class MyListViewController: UIViewController {
     private func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
-        tableView.rowHeight = 100
+        tableView.rowHeight = 50
         tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
         tableView.pin(to: view)
         
@@ -78,7 +78,7 @@ class MyListViewController: UIViewController {
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         alert.addTextField { textField in
-            textField.placeholder = "Ваш вариант"
+            textField.placeholder = "Мой вариант"
         }
         present(alert, animated: true)
     }
@@ -99,6 +99,10 @@ extension MyListViewController: UITableViewDelegate {
             myList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

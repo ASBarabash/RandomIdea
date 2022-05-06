@@ -66,7 +66,9 @@ class DescriptionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        category = StorageManager.shared.fetchList()
+        if showNavBarItem {
+            category = StorageManager.shared.fetchList()
+        }
     }
     
     private func setupNavigationBar() {

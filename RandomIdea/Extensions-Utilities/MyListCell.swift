@@ -9,7 +9,6 @@ import UIKit
 
 class MyListCell: UITableViewCell {
     
-    
     var myListLabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,7 +24,6 @@ class MyListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-// доделать!!!
     func set(_ text: String) {
         myListLabel.text = text
     }
@@ -39,17 +37,15 @@ class MyListCell: UITableViewCell {
         myListLabel.adjustsFontSizeToFitWidth = true
     }
     
-
-    
     func setTitleOptionConstraints() {
         myListLabel.translatesAutoresizingMaskIntoConstraints = false
         myListLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         myListLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
-        myListLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        myListLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         myListLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-//        myListLabel.font = UIFont(name: myListLabel.font.fontName, size: 25)
-        myListLabel.font = UIFont.boldSystemFont(ofSize: 25)
+//        myListLabel.font = UIFont(name: "Menlo", size: 20)
+        myListLabel.font = UIFont(name: myListLabel.font.fontName, size: 20)
+//        myListLabel.font = UIFont.boldSystemFont(ofSize: 15)
     }
-//
 }
 
