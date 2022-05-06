@@ -10,19 +10,19 @@ import UIKit
 class MyListViewController: UIViewController {
     
     let tableView = UITableView()
-    var myList: [String] = ["ljhl"]
+    var myList: [String] = []
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let saveMyList = UserDefaults.standard.array(forKey: "MyListKey") as? [String] {
-            self.myList = saveMyList
-        }
+        myList = StorageManager.shared.fetchList()
+//        if let saveMyList = UserDefaults.standard.array(forKey: "MyListKey") as? [String] {
+//            self.myList = saveMyList
+//        }
 
-        
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
         setupNavigationBar()
         configureTableView()
         
@@ -57,14 +57,11 @@ class MyListViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        
-        
-        
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMyList))
         
+    
     }
     
     @objc private func addMyList() {
@@ -87,6 +84,7 @@ class MyListViewController: UIViewController {
     }
     
     private func save(_ list: String) {
+        StorageManager.shared.save(myVersion: list)
         myList.append(list)
         tableView.reloadData()
     }
@@ -97,6 +95,7 @@ class MyListViewController: UIViewController {
 extension MyListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            StorageManager.shared.deleteList(at: indexPath.row)
             myList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -111,9 +110,9 @@ extension MyListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyListCell") as! MyListCell
         let myList = myList[indexPath.row]
-        cell.textLabel?.text = myList
-//        cell.set(myList)
-        
+//        cell.textLabel?.text = myList
+        cell.set(myList)
+
         return cell
     }
 }

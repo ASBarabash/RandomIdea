@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		410A8D282821256C0092ACCB /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410A8D272821256C0092ACCB /* MyListViewController.swift */; };
 		412ED9DB2825189B00F3F758 /* MyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412ED9DA2825189B00F3F758 /* MyListCell.swift */; };
+		412ED9DF282599CC00F3F758 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412ED9DE282599CC00F3F758 /* StorageManager.swift */; };
 		4162F847281D4BE900BA0974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162F846281D4BE900BA0974 /* AppDelegate.swift */; };
 		4162F849281D4BE900BA0974 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162F848281D4BE900BA0974 /* SceneDelegate.swift */; };
 		4162F850281D4BE900BA0974 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4162F84F281D4BE900BA0974 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		410A8D272821256C0092ACCB /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		412ED9DA2825189B00F3F758 /* MyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCell.swift; sourceTree = "<group>"; };
+		412ED9DE282599CC00F3F758 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		4162F843281D4BE900BA0974 /* RandomIdea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomIdea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4162F846281D4BE900BA0974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4162F848281D4BE900BA0974 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		412ED9DC2825998B00F3F758 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4176CDD2281FEEA500690F4C /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		412ED9DD282599A300F3F758 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4176CDD4281FF34800690F4C /* DataManager.swift */,
+				412ED9DE282599CC00F3F758 /* StorageManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4162F83A281D4BE900BA0974 = {
 			isa = PBXGroup;
 			children = (
@@ -73,8 +92,8 @@
 				4176CDCF281FEAD100690F4C /* Storyboards */,
 				4176CDCC281FE9F700690F4C /* ViewControllers */,
 				4176CDC7281FD81000690F4C /* Extensions-Utilities */,
-				4176CDD2281FEEA500690F4C /* Model.swift */,
-				4176CDD4281FF34800690F4C /* DataManager.swift */,
+				412ED9DC2825998B00F3F758 /* Models */,
+				412ED9DD282599A300F3F758 /* Services */,
 			);
 			path = RandomIdea;
 			sourceTree = "<group>";
@@ -197,6 +216,7 @@
 			files = (
 				410A8D282821256C0092ACCB /* MyListViewController.swift in Sources */,
 				4176CDCB281FDD0C00690F4C /* OptionCell.swift in Sources */,
+				412ED9DF282599CC00F3F758 /* StorageManager.swift in Sources */,
 				4176CDC9281FD86A00690F4C /* UIView+Ext.swift in Sources */,
 				4176CDC4281FD3CB00690F4C /* ListOfOptionsViewController.swift in Sources */,
 				4176CDD5281FF34800690F4C /* DataManager.swift in Sources */,

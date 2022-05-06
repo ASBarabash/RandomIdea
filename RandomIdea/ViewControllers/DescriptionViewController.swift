@@ -35,7 +35,11 @@ class DescriptionViewController: UIViewController {
     }()
 
     //перебрасываем значение
-    var category : [String]
+    var category : [String] {
+        didSet {
+            descriptionLabel.text = category.first
+        }
+    }
     var showNavBarItem = false
 
     init(description: [String]) {
@@ -56,7 +60,13 @@ class DescriptionViewController: UIViewController {
         setupSubviews(descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()
+        
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        category = StorageManager.shared.fetchList()
     }
     
     private func setupNavigationBar() {

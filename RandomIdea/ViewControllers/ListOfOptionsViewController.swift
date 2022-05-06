@@ -9,7 +9,8 @@ import UIKit
 
 class ListOfOptionsViewController: UIViewController {
     
-    private var categoryList: [Idea] = []
+//    private var categoryList: [Idea] = []
+    private var categoryList = Idea.getIdeas()
     
     var tableView = UITableView()
     
@@ -20,7 +21,7 @@ class ListOfOptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categoryList = Idea.getIdeas()
+//        categoryList = Idea.getIdeas()
         
         
         setupNavigationBar()
@@ -80,7 +81,8 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
         let category = categoryList[indexPath.row]
         
         if category.title == "Мой список" {
-            let myList: [String] = UserDefaults.standard.array(forKey: "MyListKey") as? [String] ?? []
+            let myList: [String] = StorageManager.shared.fetchList()
+//            let myList: [String] = UserDefaults.standard.array(forKey: "MyListKey") as? [String] ?? []
             let descriptionVC = DescriptionViewController(description: myList)
             descriptionVC.showNavBarItem = true
             navigationController?.pushViewController(descriptionVC, animated: true)

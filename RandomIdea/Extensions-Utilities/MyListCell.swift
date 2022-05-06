@@ -26,9 +26,9 @@ class MyListCell: UITableViewCell {
     }
     
 // доделать!!!
-//    func set(_: String) {
-//        myListLabel.text = String? ?? ""
-//    }
+    func set(_ text: String) {
+        myListLabel.text = text
+    }
     
     func configureMyLisLabel() {
         myListLabel.numberOfLines = 0
