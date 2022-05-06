@@ -50,14 +50,14 @@ class ListOfOptionsViewController: UIViewController {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Редактировать мой список", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editMyList))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Редактировать мой список", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editMyList))
         
     }
     
-    @objc private func editMyList() {
-        let myListVC = MyListViewController()
-        navigationController?.pushViewController(myListVC, animated: true)
-    }
+//    @objc private func editMyList() {
+//        let myListVC = MyListViewController()
+//        navigationController?.pushViewController(myListVC, animated: true)
+//    }
 
 }
 
@@ -82,6 +82,7 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
         if category.title == "Мой список" {
             let myList: [String] = UserDefaults.standard.array(forKey: "MyListKey") as? [String] ?? []
             let descriptionVC = DescriptionViewController(description: myList)
+            descriptionVC.showNavBarItem = true
             navigationController?.pushViewController(descriptionVC, animated: true)
         } else {
             var myList: [String] = []

@@ -74,8 +74,8 @@ class MyListViewController: UIViewController {
     private func showAlert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
-            guard let task = alert.textFields?.first?.text, !task.isEmpty else { return }
-            self.save(task)
+            guard let list = alert.textFields?.first?.text, !list.isEmpty else { return }
+            self.save(list)
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
         alert.addAction(saveAction)
