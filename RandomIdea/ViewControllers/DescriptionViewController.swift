@@ -37,8 +37,7 @@ class DescriptionViewController: UIViewController {
             }
         })
     }()
-
-    //перебрасываем значение
+    
     var category : [String] {
         didSet {
             descriptionLabel.text = category.first
@@ -55,9 +54,6 @@ class DescriptionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -84,6 +80,7 @@ class DescriptionViewController: UIViewController {
                 action: #selector(editMyList)
             )
         }
+        navigationItem.backButtonTitle = "Назад"
     }
     
     @objc private func editMyList() {

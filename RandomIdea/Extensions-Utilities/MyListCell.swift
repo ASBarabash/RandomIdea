@@ -15,7 +15,6 @@ class MyListCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(myListLabel)
         
-        configureMyLisLabel()
         configureInfoMyListLabel()
         setTitleOptionConstraints()
     }
@@ -28,9 +27,7 @@ class MyListCell: UITableViewCell {
         myListLabel.text = text
     }
     
-    func configureMyLisLabel() {
-        myListLabel.numberOfLines = 0
-    }
+    
     
     func configureInfoMyListLabel() {
         myListLabel.numberOfLines = 0
@@ -38,14 +35,17 @@ class MyListCell: UITableViewCell {
     }
     
     func setTitleOptionConstraints() {
+        
         myListLabel.translatesAutoresizingMaskIntoConstraints = false
-        myListLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+//        myListLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        myListLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
         myListLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
-        myListLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+////        myListLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         myListLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-//        myListLabel.font = UIFont(name: "Menlo", size: 20)
+        myListLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
+////        myListLabel.font = UIFont(name: "Menlo", size: 20)
         myListLabel.font = UIFont(name: myListLabel.font.fontName, size: 20)
-//        myListLabel.font = UIFont.boldSystemFont(ofSize: 15)
+////        myListLabel.font = UIFont.boldSystemFont(ofSize: 15)
     }
 }
 

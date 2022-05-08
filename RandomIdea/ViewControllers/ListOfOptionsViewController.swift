@@ -26,7 +26,6 @@ class ListOfOptionsViewController: UIViewController {
         
         setupNavigationBar()
         configureTableView()
-
     }
     
     
@@ -34,6 +33,7 @@ class ListOfOptionsViewController: UIViewController {
         view.addSubview(tableView)
         setTableViewDelegates()
         tableView.rowHeight = 100
+//        tableView.backgroundColor = .systemGray
         tableView.register(OptionCell.self, forCellReuseIdentifier: Cell.optionCell)
         tableView.pin(to: view)
         
@@ -47,18 +47,14 @@ class ListOfOptionsViewController: UIViewController {
     private func setupNavigationBar() {
         title = "Random Idea"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.backButtonTitle = "Назад"
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Редактировать мой список", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editMyList))
         
     }
     
-//    @objc private func editMyList() {
-//        let myListVC = MyListViewController()
-//        navigationController?.pushViewController(myListVC, animated: true)
-//    }
 
 }
 
@@ -79,10 +75,10 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categoryList[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
         
         if category.title == "Мой список" {
             let myList: [String] = StorageManager.shared.fetchList()
-//            let myList: [String] = UserDefaults.standard.array(forKey: "MyListKey") as? [String] ?? []
             let descriptionVC = DescriptionViewController(description: myList)
             descriptionVC.showInMyList = true
             navigationController?.pushViewController(descriptionVC, animated: true)
