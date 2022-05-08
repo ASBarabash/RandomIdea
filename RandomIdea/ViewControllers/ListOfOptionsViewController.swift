@@ -84,7 +84,7 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
             let myList: [String] = StorageManager.shared.fetchList()
 //            let myList: [String] = UserDefaults.standard.array(forKey: "MyListKey") as? [String] ?? []
             let descriptionVC = DescriptionViewController(description: myList)
-            descriptionVC.showNavBarItem = true
+            descriptionVC.showInMyList = true
             navigationController?.pushViewController(descriptionVC, animated: true)
         } else {
             var myList: [String] = []

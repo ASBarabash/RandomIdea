@@ -29,8 +29,12 @@ class DescriptionViewController: UIViewController {
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
 //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
         return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
-            let categoryShuffled = self.category.shuffled()
-            self.descriptionLabel.text = categoryShuffled.first
+            if self.category.count == 0 {
+                self.showAlertError(title: "Ваш список пустой", message: "Отредактируйте ваш список")
+            } else {
+                let categoryShuffled = self.category.shuffled()
+                self.descriptionLabel.text = categoryShuffled.first
+            }
         })
     }()
 
@@ -40,7 +44,7 @@ class DescriptionViewController: UIViewController {
             descriptionLabel.text = category.first
         }
     }
-    var showNavBarItem = false
+    var showInMyList = false
 
     init(description: [String]) {
         self.category = description
@@ -66,13 +70,13 @@ class DescriptionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if showNavBarItem {
+        if showInMyList {
             category = StorageManager.shared.fetchList()
         }
     }
     
     private func setupNavigationBar() {
-        if showNavBarItem {
+        if showInMyList {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 title: "Редактировать мой список",
                 style: UIBarButtonItem.Style.plain,
@@ -85,6 +89,14 @@ class DescriptionViewController: UIViewController {
     @objc private func editMyList() {
         let myListVC = MyListViewController()
         navigationController?.pushViewController(myListVC, animated: true)
+    }
+    
+    private func showAlertError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .destructive)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+        
     }
     
     private func setupSubviews(_ subviews: UIView...) {
