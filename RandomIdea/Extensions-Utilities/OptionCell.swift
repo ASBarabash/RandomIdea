@@ -14,7 +14,10 @@ class OptionCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .blue
+//        contentView.backgroundColor = .blue
+        backgroundView = UIImageView(image: UIImage(named: "Frame 1"))
+        selectedBackgroundView = UIImageView(image: UIImage(named: "Frame 2"))
+        
         addSubview(iconOptionLabel)
         addSubview(titleOptionLabel)
         

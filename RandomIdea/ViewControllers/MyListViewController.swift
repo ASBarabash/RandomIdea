@@ -41,11 +41,12 @@ class MyListViewController: UIViewController {
     private func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
+        tableView.pin(to: view)
 //        tableView.rowHeight = 50
         tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
 //        tableView.rowHeight = UITableView.automaticDimension
 //        tableView.estimatedRowHeight = 44
-        tableView.pin(to: view)
+        tableView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
         
     }
     

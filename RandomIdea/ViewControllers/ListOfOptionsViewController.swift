@@ -31,11 +31,14 @@ class ListOfOptionsViewController: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
+        tableView.pin(to: view)
         setTableViewDelegates()
         tableView.rowHeight = 100
-//        tableView.backgroundColor = .systemGray
+        
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
         tableView.register(OptionCell.self, forCellReuseIdentifier: Cell.optionCell)
-        tableView.pin(to: view)
         
     }
     
@@ -51,6 +54,11 @@ class ListOfOptionsViewController: UIViewController {
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
+        
+        navBarAppearance.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.tintColor = .blue
         
         
     }
@@ -68,7 +76,6 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.optionCell) as! OptionCell
         let idea = categoryList[indexPath.row]
         cell.set(idea: idea)
-        
         
         return cell
     }
