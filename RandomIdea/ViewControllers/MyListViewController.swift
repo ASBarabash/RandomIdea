@@ -18,11 +18,7 @@ class MyListViewController: UIViewController {
         super.viewDidLoad()
         
         myList = StorageManager.shared.fetchList()
-//        if let saveMyList = UserDefaults.standard.array(forKey: "MyListKey") as? [String] {
-//            self.myList = saveMyList
-//        }
 
-//        view.backgroundColor = .white
         setupNavigationBar()
         configureTableView()
         
@@ -45,9 +41,12 @@ class MyListViewController: UIViewController {
     private func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
-        tableView.rowHeight = 50
-        tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
         tableView.pin(to: view)
+//        tableView.rowHeight = 50
+        tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 44
+        tableView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
         
     }
     
@@ -114,7 +113,6 @@ extension MyListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyListCell") as! MyListCell
         let myList = myList[indexPath.row]
-//        cell.textLabel?.text = myList
         cell.set(myList)
 
         return cell

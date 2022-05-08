@@ -13,7 +13,7 @@ class DescriptionViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize: 25)
         let categoryShuffled = category.shuffled()
         label.text = categoryShuffled.first
         
@@ -22,25 +22,34 @@ class DescriptionViewController: UIViewController {
     }()
     
     private lazy var randomButton: UIButton = {
-        var buttonConfiguration = UIButton.Configuration.filled()
+        var buttonConfiguration = UIButton.Configuration.gray()
         var attributes = AttributeContainer()
         
+        
         attributes.font = UIFont.boldSystemFont(ofSize: 18)
+        buttonConfiguration.baseForegroundColor = .black
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
-//        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
+        buttonConfiguration.background.image = UIImage(named: "Frame 1")
+        
+        
+        
+        //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
         return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
-            let categoryShuffled = self.category.shuffled()
-            self.descriptionLabel.text = categoryShuffled.first
+            if self.category.count == 0 {
+                self.showAlertError(title: "Ваш список пустой", message: "Отредактируйте ваш список")
+            } else {
+                let categoryShuffled = self.category.shuffled()
+                self.descriptionLabel.text = categoryShuffled.first
+            }
         })
     }()
-
-    //перебрасываем значение
+    
     var category : [String] {
         didSet {
             descriptionLabel.text = category.first
         }
     }
-    var showNavBarItem = false
+    var showInMyList = false
 
     init(description: [String]) {
         self.category = description
@@ -51,28 +60,26 @@ class DescriptionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
         setupSubviews(descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()
+        
         
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if showNavBarItem {
+        if showInMyList {
             category = StorageManager.shared.fetchList()
         }
     }
     
     private func setupNavigationBar() {
-        if showNavBarItem {
+        if showInMyList {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 title: "Редактировать мой список",
                 style: UIBarButtonItem.Style.plain,
@@ -80,11 +87,20 @@ class DescriptionViewController: UIViewController {
                 action: #selector(editMyList)
             )
         }
+        navigationItem.backButtonTitle = "Назад"
     }
     
     @objc private func editMyList() {
         let myListVC = MyListViewController()
         navigationController?.pushViewController(myListVC, animated: true)
+    }
+    
+    private func showAlertError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .destructive)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+        
     }
     
     private func setupSubviews(_ subviews: UIView...) {
@@ -98,16 +114,17 @@ class DescriptionViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
             
         ])
         randomButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             randomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
-            randomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            randomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            randomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            randomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            randomButton.heightAnchor.constraint(equalToConstant: 50)
 
         ])
     }

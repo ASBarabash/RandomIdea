@@ -26,16 +26,19 @@ class ListOfOptionsViewController: UIViewController {
         
         setupNavigationBar()
         configureTableView()
-
     }
     
     
     private func configureTableView() {
         view.addSubview(tableView)
+        tableView.pin(to: view)
         setTableViewDelegates()
         tableView.rowHeight = 100
+        
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
         tableView.register(OptionCell.self, forCellReuseIdentifier: Cell.optionCell)
-        tableView.pin(to: view)
         
     }
     
@@ -47,18 +50,19 @@ class ListOfOptionsViewController: UIViewController {
     private func setupNavigationBar() {
         title = "Random Idea"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.backButtonTitle = "Назад"
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Редактировать мой список", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editMyList))
+        navBarAppearance.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.tintColor = .blue
+        
         
     }
     
-//    @objc private func editMyList() {
-//        let myListVC = MyListViewController()
-//        navigationController?.pushViewController(myListVC, animated: true)
-//    }
 
 }
 
@@ -73,18 +77,17 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
         let idea = categoryList[indexPath.row]
         cell.set(idea: idea)
         
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categoryList[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
         
         if category.title == "Мой список" {
             let myList: [String] = StorageManager.shared.fetchList()
-//            let myList: [String] = UserDefaults.standard.array(forKey: "MyListKey") as? [String] ?? []
             let descriptionVC = DescriptionViewController(description: myList)
-            descriptionVC.showNavBarItem = true
+            descriptionVC.showInMyList = true
             navigationController?.pushViewController(descriptionVC, animated: true)
         } else {
             var myList: [String] = []
