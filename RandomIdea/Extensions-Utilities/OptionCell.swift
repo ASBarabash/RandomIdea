@@ -18,6 +18,7 @@ class OptionCell: UITableViewCell {
         backgroundView = UIImageView(image: UIImage(named: "Frame 1"))
         selectedBackgroundView = UIImageView(image: UIImage(named: "Frame 2"))
         
+        
         addSubview(iconOptionLabel)
         addSubview(titleOptionLabel)
         

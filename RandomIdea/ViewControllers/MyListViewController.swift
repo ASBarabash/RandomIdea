@@ -78,6 +78,7 @@ class MyListViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addTextField { textField in
             textField.placeholder = "Мой вариант"
+            textField.autocapitalizationType = .sentences
         }
         present(alert, animated: true)
     }

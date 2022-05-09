@@ -14,6 +14,9 @@ class MyListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(myListLabel)
+        contentView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        addSubview(myListLabel)
+    
         
         configureInfoMyListLabel()
         setTitleOptionConstraints()
@@ -32,6 +35,7 @@ class MyListCell: UITableViewCell {
     func configureInfoMyListLabel() {
         myListLabel.numberOfLines = 0
         myListLabel.adjustsFontSizeToFitWidth = true
+
     }
     
     func setTitleOptionConstraints() {

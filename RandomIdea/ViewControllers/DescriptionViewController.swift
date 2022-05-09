@@ -9,6 +9,7 @@ import UIKit
 
 class DescriptionViewController: UIViewController {
     
+    
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -77,6 +78,7 @@ class DescriptionViewController: UIViewController {
         setupSubviews(descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()
+        
 
     }
     
@@ -119,22 +121,21 @@ class DescriptionViewController: UIViewController {
     }
     
     private func setConstraints() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
             
         ])
+        
         randomButton.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             randomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             randomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             randomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            randomButton.heightAnchor.constraint(equalToConstant: 50)
-
+            randomButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 
