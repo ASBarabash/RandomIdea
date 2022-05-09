@@ -25,16 +25,13 @@ class DescriptionViewController: UIViewController {
         var buttonConfiguration = UIButton.Configuration.gray()
         var attributes = AttributeContainer()
         
-        
         attributes.font = UIFont.boldSystemFont(ofSize: 18)
         buttonConfiguration.baseForegroundColor = .black
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
         buttonConfiguration.background.image = UIImage(named: "Frame 1")
-        
-        
-        
         //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
-        return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
+
+        let button = UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
             if self.category.count == 0 {
                 self.showAlertError(title: "Ваш список пустой", message: "Отредактируйте ваш список")
             } else {
@@ -42,7 +39,21 @@ class DescriptionViewController: UIViewController {
                 self.descriptionLabel.text = categoryShuffled.first
             }
         })
+        
+        button.addTarget(self, action: #selector(touchUpInside), for: UIControl.Event.touchUpInside)
+        button.addTarget(self, action: #selector(touchDown), for: UIControl.Event.touchDown)
+        
+        return button
     }()
+    
+    @objc private func touchUpInside() {
+        randomButton.configuration?.background.image = UIImage(named: "Frame 1")
+    }
+    @objc private func touchDown() {
+        randomButton.configuration?.background.image = UIImage(named: "Frame 2")
+    }
+    
+    
     
     var category : [String] {
         didSet {
@@ -66,8 +77,6 @@ class DescriptionViewController: UIViewController {
         setupSubviews(descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()
-        
-        
 
     }
     
