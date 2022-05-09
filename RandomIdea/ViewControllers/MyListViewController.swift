@@ -9,14 +9,14 @@ import UIKit
 
 class MyListViewController: UIViewController {
     
-    let tableView = UITableView()
-    var myList: [String] = []
+    private let tableView = UITableView()
+    private var myList: [String] = []
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .red
         myList = StorageManager.shared.fetchList()
 
         setupNavigationBar()
@@ -42,7 +42,6 @@ class MyListViewController: UIViewController {
         view.addSubview(tableView)
         setTableViewDelegates()
         tableView.pin(to: view)
-//        tableView.rowHeight = 50
         tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
 //        tableView.rowHeight = UITableView.automaticDimension
 //        tableView.estimatedRowHeight = 44
@@ -56,19 +55,22 @@ class MyListViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+        title = "Мой список идей"
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMyList))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMyList))
+        navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         
     
     }
-    
+
     @objc private func addMyList() {
         showAlert(with: "Мой список", and: "Введите ваш вариант")
     }
     
     private func showAlert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
             guard let list = alert.textFields?.first?.text, !list.isEmpty else { return }
             self.save(list)
@@ -103,7 +105,15 @@ extension MyListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+  
 }
 
 extension MyListViewController: UITableViewDataSource {

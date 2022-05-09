@@ -9,6 +9,11 @@ import UIKit
 
 class DescriptionViewController: UIViewController {
     
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "13 Pro - 3")
+        return imageView
+    }()
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
@@ -29,7 +34,7 @@ class DescriptionViewController: UIViewController {
         attributes.font = UIFont.boldSystemFont(ofSize: 18)
         buttonConfiguration.baseForegroundColor = .black
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
-        buttonConfiguration.background.image = UIImage(named: "Frame 1")
+        buttonConfiguration.background.image = UIImage(named: "Frame 3")
         //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
 
         let button = UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
@@ -48,10 +53,10 @@ class DescriptionViewController: UIViewController {
     }()
     
     @objc private func touchUpInside() {
-        randomButton.configuration?.background.image = UIImage(named: "Frame 1")
+        randomButton.configuration?.background.image = UIImage(named: "Frame 3")
     }
     @objc private func touchDown() {
-        randomButton.configuration?.background.image = UIImage(named: "Frame 2")
+        randomButton.configuration?.background.image = UIImage(named: "Frame 4")
     }
     
     
@@ -75,7 +80,7 @@ class DescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
-        setupSubviews(descriptionLabel, randomButton)
+        setupSubviews(imageView, descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()
         
@@ -121,6 +126,13 @@ class DescriptionViewController: UIViewController {
     }
     
     private func setConstraints() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
