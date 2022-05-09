@@ -9,6 +9,12 @@ import UIKit
 
 class DescriptionViewController: UIViewController {
     
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "13 Pro - 3")
+        return imageView
+    }()
+    
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -25,16 +31,13 @@ class DescriptionViewController: UIViewController {
         var buttonConfiguration = UIButton.Configuration.gray()
         var attributes = AttributeContainer()
         
-        
         attributes.font = UIFont.boldSystemFont(ofSize: 18)
         buttonConfiguration.baseForegroundColor = .black
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
-        buttonConfiguration.background.image = UIImage(named: "Frame 1")
-        
-        
-        
+        buttonConfiguration.background.image = UIImage(named: "Frame 3")
         //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
-        return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
+
+        let button = UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
             if self.category.count == 0 {
                 self.showAlertError(title: "Ваш список пустой", message: "Отредактируйте ваш список")
             } else {
@@ -42,7 +45,21 @@ class DescriptionViewController: UIViewController {
                 self.descriptionLabel.text = categoryShuffled.first
             }
         })
+        
+        button.addTarget(self, action: #selector(touchUpInside), for: UIControl.Event.touchUpInside)
+        button.addTarget(self, action: #selector(touchDown), for: UIControl.Event.touchDown)
+        
+        return button
     }()
+    
+    @objc private func touchUpInside() {
+        randomButton.configuration?.background.image = UIImage(named: "Frame 3")
+    }
+    @objc private func touchDown() {
+        randomButton.configuration?.background.image = UIImage(named: "Frame 4")
+    }
+    
+    
     
     var category : [String] {
         didSet {
@@ -63,10 +80,9 @@ class DescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
-        setupSubviews(descriptionLabel, randomButton)
+        setupSubviews(imageView, descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()
-        
         
 
     }
@@ -110,22 +126,28 @@ class DescriptionViewController: UIViewController {
     }
     
     private func setConstraints() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
         
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
             
         ])
+        
         randomButton.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             randomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             randomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             randomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            randomButton.heightAnchor.constraint(equalToConstant: 50)
-
+            randomButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 

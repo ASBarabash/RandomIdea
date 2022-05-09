@@ -9,12 +9,13 @@ import UIKit
 
 class MyListCell: UITableViewCell {
     
-    var myListLabel = UILabel()
+    private let myListLabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(myListLabel)
-        
+        contentView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        contentView.addSubview(myListLabel)
+    
         configureInfoMyListLabel()
         setTitleOptionConstraints()
     }
@@ -27,22 +28,19 @@ class MyListCell: UITableViewCell {
         myListLabel.text = text
     }
     
-    
-    
     func configureInfoMyListLabel() {
         myListLabel.numberOfLines = 0
         myListLabel.adjustsFontSizeToFitWidth = true
     }
     
     func setTitleOptionConstraints() {
-        
         myListLabel.translatesAutoresizingMaskIntoConstraints = false
 //        myListLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        myListLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
-        myListLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
+        myListLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
+        myListLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
 ////        myListLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        myListLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-        myListLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
+        myListLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        myListLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15).isActive = true
 ////        myListLabel.font = UIFont(name: "Menlo", size: 20)
         myListLabel.font = UIFont(name: myListLabel.font.fontName, size: 20)
 ////        myListLabel.font = UIFont.boldSystemFont(ofSize: 15)
