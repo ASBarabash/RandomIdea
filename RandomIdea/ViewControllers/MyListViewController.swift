@@ -16,7 +16,6 @@ class MyListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         myList = StorageManager.shared.fetchList()
 
         setupNavigationBar()
@@ -113,7 +112,10 @@ extension MyListViewController: UITableViewDelegate {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
     }
-  
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            cell.backgroundColor = UIColor.clear
+        }
 }
 
 extension MyListViewController: UITableViewDataSource {
