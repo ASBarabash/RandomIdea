@@ -9,11 +9,11 @@ import UIKit
 
 class MyListViewController: UIViewController {
     
+    // MARK: Private Properties
     private let tableView = UITableView()
     private var myList: [String] = []
     
-    
-
+    // MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         myList = StorageManager.shared.fetchList()
@@ -21,29 +21,14 @@ class MyListViewController: UIViewController {
         setupNavigationBar()
         configureTableView()
         
-        
     }
     
-//    func layout() {
-//        [tableView].forEach {
-//            $0.translatesAutoresizingMaskIntoConstraints = false
-//            view.addSubview($0)
-//        }
-//
-//        NSLayoutConstraint.activate([
-//            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//        ])
-//    }
+    // MARK: Private Methods
     private func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
         tableView.pin(to: view)
         tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 44
         tableView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
         
     }
@@ -91,8 +76,22 @@ class MyListViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDelegate
+extension MyListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyListCell") as! MyListCell
+        let myList = myList[indexPath.row]
+        cell.set(myList)
+        
+        return cell
+    }
+}
 
-
+// MARK: UITableViewDelegate
 extension MyListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -104,7 +103,6 @@ extension MyListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         
     }
     
@@ -118,18 +116,5 @@ extension MyListViewController: UITableViewDelegate {
         }
 }
 
-extension MyListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyListCell") as! MyListCell
-        let myList = myList[indexPath.row]
-        cell.set(myList)
-
-        return cell
-    }
-}
 
 
