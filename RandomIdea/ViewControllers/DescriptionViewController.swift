@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class DescriptionViewController: UIViewController {
     
@@ -35,11 +36,11 @@ class DescriptionViewController: UIViewController {
         buttonConfiguration.baseForegroundColor = .black
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
         buttonConfiguration.background.image = UIImage(named: "Frame 3")
-        //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
 
         let button = UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
             if self.category.count == 0 {
                 self.showAlertError(title: "Ваш список пустой", message: "Отредактируйте ваш список")
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             } else {
                 let categoryShuffled = self.category.shuffled()
                 self.descriptionLabel.text = categoryShuffled.first

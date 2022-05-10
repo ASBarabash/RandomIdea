@@ -54,7 +54,7 @@ class ListOfOptionsViewController: UIViewController {
         navBarAppearance.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
         
         navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.tintColor = .blue
+        navigationController?.navigationBar.tintColor = .systemBlue
         
         
     }
