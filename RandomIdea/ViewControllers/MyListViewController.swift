@@ -120,6 +120,3 @@ extension MyListViewController: UITableViewDelegate {
             cell.backgroundColor = UIColor.clear
         }
 }
-
-
-
