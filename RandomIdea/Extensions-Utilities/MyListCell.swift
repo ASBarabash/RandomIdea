@@ -10,7 +10,8 @@ import UIKit
 class MyListCell: UITableViewCell {
     
     private let myListLabel = UILabel()
-
+    
+    //MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
@@ -24,26 +25,26 @@ class MyListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Public Methods
     func set(_ text: String) {
         myListLabel.text = text
     }
     
-    func configureInfoMyListLabel() {
+    // MARK: Private Methods
+    private func configureInfoMyListLabel() {
         myListLabel.numberOfLines = 0
         myListLabel.adjustsFontSizeToFitWidth = true
     }
     
-    func setTitleOptionConstraints() {
+    private func setTitleOptionConstraints() {
         myListLabel.translatesAutoresizingMaskIntoConstraints = false
-//        myListLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         myListLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
         myListLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-////        myListLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         myListLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         myListLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15).isActive = true
-////        myListLabel.font = UIFont(name: "Menlo", size: 20)
+//        myListLabel.font = UIFont(name: "Menlo", size: 20)
         myListLabel.font = UIFont(name: myListLabel.font.fontName, size: 20)
-////        myListLabel.font = UIFont.boldSystemFont(ofSize: 15)
+
     }
 }
 

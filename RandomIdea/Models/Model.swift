@@ -11,13 +11,10 @@ struct Idea {
     let icon: String
     let title: String
     let category: [Category]
-    
-    
 }
 
 struct Category {
     let discription: String
-    
 }
 
 extension Idea {
@@ -41,18 +38,25 @@ extension Idea {
                     category: Category.getRecipes()
                 )
                 idea.append(item)
-            default:
+            case 2:
                 let item = Idea(
                     icon: DataManager.shared.icon[index],
                     title: DataManager.shared.title[index],
                     category: Category.getSkills()
                 )
                 idea.append(item)
-                
+            default:
+                let item = Idea(
+                    icon: DataManager.shared.icon[index],
+                    title: DataManager.shared.title[index],
+                    category: Category.getCompanyEntertainment()
+                )
+                idea.append(item)
             }
         }
         return idea
     }
+    
 }
 
 extension Category {
@@ -88,5 +92,17 @@ extension Category {
         }
         return category
     }
+    
+    static func getCompanyEntertainment() -> [Category] {
+        var category: [Category] = []
+        let iterations = DataManager.shared.company.count - 1
+        
+        for index in 0...iterations {
+            let company = Category(discription: DataManager.shared.company[index])
+            category.append(company)
+        }
+        return category
+    }
+    
 }
 

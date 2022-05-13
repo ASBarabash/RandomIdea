@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class DescriptionViewController: UIViewController {
     
+    //MARK: Public Properties
+    var showInMyList = false
+    
+    // MARK: Private Properties
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "13 Pro - 3")
@@ -23,7 +28,6 @@ class DescriptionViewController: UIViewController {
         let categoryShuffled = category.shuffled()
         label.text = categoryShuffled.first
         
-        
         return label
     }()
     
@@ -35,12 +39,13 @@ class DescriptionViewController: UIViewController {
         buttonConfiguration.baseForegroundColor = .black
         buttonConfiguration.attributedTitle = AttributedString("Следующий вариант", attributes: attributes)
         buttonConfiguration.background.image = UIImage(named: "Frame 3")
-        //        buttonConfiguration.baseBackgroundColor = UIColor(red: 21/255, green: 101/255, blue: 192/255, alpha: 1)
 
         let button = UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
             if self.category.count == 0 {
                 self.showAlertError(title: "Ваш список пустой", message: "Отредактируйте ваш список")
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             } else {
+                AudioServicesPlaySystemSound(1519)
                 let categoryShuffled = self.category.shuffled()
                 self.descriptionLabel.text = categoryShuffled.first
             }
@@ -52,22 +57,13 @@ class DescriptionViewController: UIViewController {
         return button
     }()
     
-    @objc private func touchUpInside() {
-        randomButton.configuration?.background.image = UIImage(named: "Frame 3")
-    }
-    @objc private func touchDown() {
-        randomButton.configuration?.background.image = UIImage(named: "Frame 4")
-    }
-    
-    
-    
-    var category : [String] {
+    private var category : [String] {
         didSet {
             descriptionLabel.text = category.first
         }
     }
-    var showInMyList = false
-
+    
+    //MARK: Initializers
     init(description: [String]) {
         self.category = description
         super.init(nibName: nil, bundle: nil)
@@ -77,14 +73,20 @@ class DescriptionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        view.backgroundColor = UIColor(
+            red: 149/255,
+            green: 208/255,
+            blue: 241/255,
+            alpha: 100
+        )
+        
         setupSubviews(imageView, descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()
-        
-
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +94,14 @@ class DescriptionViewController: UIViewController {
         if showInMyList {
             category = StorageManager.shared.fetchList()
         }
+    }
+    
+    // MARK: Private Methods
+    @objc private func touchUpInside() {
+        randomButton.configuration?.background.image = UIImage(named: "Frame 3")
+    }
+    @objc private func touchDown() {
+        randomButton.configuration?.background.image = UIImage(named: "Frame 4")
     }
     
     private func setupNavigationBar() {
@@ -137,8 +147,8 @@ class DescriptionViewController: UIViewController {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
             
         ])
         

@@ -9,33 +9,37 @@ import UIKit
 
 class ListOfOptionsViewController: UIViewController {
     
+    // MARK: Private Properties
+    private let tableView = UITableView()
     private let categoryList = Idea.getIdeas()
     
-    private let tableView = UITableView()
-    
+    // MARK: Struct Cell
     struct Cell {
         static let optionCell = "OptionCell"
     }
-
+    
+    // MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
         configureTableView()
     }
     
-    
+    // MARK: Private Methods
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.pin(to: view)
         setTableViewDelegates()
         tableView.rowHeight = 100
-        
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        tableView.backgroundColor = UIColor(
+            red: 149/255,
+            green: 208/255,
+            blue: 241/255,
+            alpha: 100
+        )
         tableView.register(OptionCell.self, forCellReuseIdentifier: Cell.optionCell)
-        
     }
     
     private func setTableViewDelegates() {
@@ -50,19 +54,22 @@ class ListOfOptionsViewController: UIViewController {
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        
-        navBarAppearance.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        navBarAppearance.backgroundColor = UIColor(
+            red: 149/255,
+            green: 208/255,
+            blue: 241/255,
+            alpha: 100
+        )
         
         navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.tintColor = .blue
-        
-        
+        navigationController?.navigationBar.tintColor = .systemBlue
     }
     
 
 }
 
-extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: UITableViewDataSource
+extension ListOfOptionsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryList.count
@@ -76,10 +83,14 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
+}
+
+// MARK: UITableViewDelegate
+extension ListOfOptionsViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categoryList[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        
         
         if category.title == "Мой список" {
             let myList = StorageManager.shared.fetchList()
@@ -96,9 +107,6 @@ extension ListOfOptionsViewController: UITableViewDelegate, UITableViewDataSourc
             let descriptionVC = DescriptionViewController(description: myList)
             navigationController?.pushViewController(descriptionVC, animated: true)
         }
-//        present(DescriptionViewController(), animated: true)
-        
     }
-    
     
 }
