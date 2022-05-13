@@ -45,6 +45,7 @@ class DescriptionViewController: UIViewController {
                 self.showAlertError(title: "Ваш список пустой", message: "Отредактируйте ваш список")
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             } else {
+                AudioServicesPlaySystemSound(1519)
                 let categoryShuffled = self.category.shuffled()
                 self.descriptionLabel.text = categoryShuffled.first
             }
@@ -75,7 +76,13 @@ class DescriptionViewController: UIViewController {
     // MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        view.backgroundColor = UIColor(
+            red: 149/255,
+            green: 208/255,
+            blue: 241/255,
+            alpha: 100
+        )
+        
         setupSubviews(imageView, descriptionLabel, randomButton)
         setConstraints()
         setupNavigationBar()

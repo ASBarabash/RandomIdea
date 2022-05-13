@@ -366,6 +366,7 @@
 				DEVELOPMENT_TEAM = CMB6GH46SU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RandomIdea/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Random Idea";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -393,6 +394,7 @@
 				DEVELOPMENT_TEAM = CMB6GH46SU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RandomIdea/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Random Idea";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

@@ -29,7 +29,12 @@ class MyListViewController: UIViewController {
         setTableViewDelegates()
         tableView.pin(to: view)
         tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
-        tableView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        tableView.backgroundColor = UIColor(
+            red: 149/255,
+            green: 208/255,
+            blue: 241/255,
+            alpha: 100
+        )
         
     }
     
