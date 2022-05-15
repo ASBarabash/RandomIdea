@@ -14,18 +14,8 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Frame 6" translatesAutoresizingMaskIntoConstraints="NO" id="fQK-1q-bMq">
-                                <rect key="frame" x="94" y="-59" width="226" height="1024"/>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.36249792580000001" green="0.74229723219999999" blue="0.95243042710000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="fQK-1q-bMq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="94" id="1gh-Or-Pap"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fQK-1q-bMq" secondAttribute="trailing" constant="94" id="xCV-0e-N7A"/>
-                            <constraint firstItem="fQK-1q-bMq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="z9b-Dg-2NS"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.42795485259999999" green="0.71701222659999997" blue="0.88011103869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -33,7 +23,4 @@
             <point key="canvasLocation" x="51.86915887850467" y="374.51403887688986"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Frame 6" width="1024" height="1024"/>
-    </resources>
 </document>

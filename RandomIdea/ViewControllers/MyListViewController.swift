@@ -30,9 +30,9 @@ class MyListViewController: UIViewController {
         tableView.pin(to: view)
         tableView.register(MyListCell.self, forCellReuseIdentifier: "MyListCell")
         tableView.backgroundColor = UIColor(
-            red: 149/255,
-            green: 208/255,
-            blue: 241/255,
+            red: 109/255,
+            green: 183/255,
+            blue: 224/255,
             alpha: 100
         )
         
@@ -48,6 +48,7 @@ class MyListViewController: UIViewController {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMyList))
+        editButtonItem.title = "Ред."
         navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         
     
@@ -114,6 +115,7 @@ extension MyListViewController: UITableViewDelegate {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
+        editButtonItem.title = editing ? "Готово" : "Ред."
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

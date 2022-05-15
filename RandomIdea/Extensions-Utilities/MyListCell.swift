@@ -14,7 +14,12 @@ class MyListCell: UITableViewCell {
     //MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = UIColor(red: 149/255, green: 208/255, blue: 241/255, alpha: 100)
+        contentView.backgroundColor = UIColor(
+            red: 109/255,
+            green: 183/255,
+            blue: 224/255,
+            alpha: 100
+        )
         contentView.addSubview(myListLabel)
     
         configureInfoMyListLabel()

@@ -34,9 +34,9 @@ class ListOfOptionsViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = UIColor(
-            red: 149/255,
-            green: 208/255,
-            blue: 241/255,
+            red: 109/255,
+            green: 183/255,
+            blue: 224/255,
             alpha: 100
         )
         tableView.register(OptionCell.self, forCellReuseIdentifier: Cell.optionCell)
@@ -55,9 +55,9 @@ class ListOfOptionsViewController: UIViewController {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = UIColor(
-            red: 149/255,
-            green: 208/255,
-            blue: 241/255,
+            red: 109/255,
+            green: 183/255,
+            blue: 224/255,
             alpha: 100
         )
         
