@@ -10,7 +10,7 @@ import AudioToolbox
 
 class DescriptionViewController: UIViewController {
     
-    //MARK: Public Properties
+    //MARK: - Public Properties
     var showInMyList = false
     
     // MARK: Private Properties
@@ -63,7 +63,7 @@ class DescriptionViewController: UIViewController {
         }
     }
     
-    //MARK: Initializers
+    //MARK: - Initializers
     init(description: [String]) {
         self.category = description
         super.init(nibName: nil, bundle: nil)
@@ -96,7 +96,7 @@ class DescriptionViewController: UIViewController {
         }
     }
     
-    // MARK: Private Methods
+    // MARK: - Private Methods
     @objc private func touchUpInside() {
         randomButton.configuration?.background.image = UIImage(named: "Frame 3")
     }
