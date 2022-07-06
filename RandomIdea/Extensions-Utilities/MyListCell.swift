@@ -11,7 +11,7 @@ class MyListCell: UITableViewCell {
     
     private let myListLabel = UILabel()
     
-    //MARK: Initializers
+    //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(
@@ -30,12 +30,12 @@ class MyListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Public Methods
+    // MARK: - Public Methods
     func set(_ text: String) {
         myListLabel.text = text
     }
     
-    // MARK: Private Methods
+    // MARK: - Private Methods
     private func configureInfoMyListLabel() {
         myListLabel.numberOfLines = 0
         myListLabel.adjustsFontSizeToFitWidth = true

@@ -9,7 +9,7 @@ import UIKit
 
 class MyListViewController: UIViewController {
     
-    // MARK: Private Properties
+    // MARK: - Private Properties
     private let tableView = UITableView()
     private var myList: [String] = []
     
@@ -23,7 +23,7 @@ class MyListViewController: UIViewController {
         
     }
     
-    // MARK: Private Methods
+    // MARK: - Private Methods
     private func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
@@ -82,7 +82,7 @@ class MyListViewController: UIViewController {
     }
 }
 
-// MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension MyListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myList.count
@@ -97,7 +97,7 @@ extension MyListViewController: UITableViewDataSource {
     }
 }
 
-// MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension MyListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

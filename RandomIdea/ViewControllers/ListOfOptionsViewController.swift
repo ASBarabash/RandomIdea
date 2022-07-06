@@ -9,16 +9,16 @@ import UIKit
 
 class ListOfOptionsViewController: UIViewController {
     
-    // MARK: Private Properties
+    // MARK: - Private Properties
     private let tableView = UITableView()
     private let categoryList = Idea.getIdeas()
     
-    // MARK: Struct Cell
+    // MARK: - Struct Cell
     struct Cell {
         static let optionCell = "OptionCell"
     }
     
-    // MARK: Override Methods
+    // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -68,7 +68,7 @@ class ListOfOptionsViewController: UIViewController {
 
 }
 
-// MARK: UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension ListOfOptionsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,7 +85,7 @@ extension ListOfOptionsViewController: UITableViewDataSource {
     
 }
 
-// MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension ListOfOptionsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -9,7 +9,7 @@ import UIKit
 
 class OptionCell: UITableViewCell {
     
-    // MARK: Private Properties
+    // MARK: - Private Properties
     private let iconOptionLabel = UILabel()
     private let titleOptionLabel = UILabel()
     
@@ -32,13 +32,13 @@ class OptionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Public Methods
+    // MARK: - Public Methods
     func set(idea: Idea) {
         iconOptionLabel.text = idea.icon
         titleOptionLabel.text = idea.title
     }
     
-    // MARK: Private Methods
+    // MARK: - Private Methods
     private func configureIconOptionLabel() {
         titleOptionLabel.numberOfLines = 0
     }
